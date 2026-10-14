@@ -1,0 +1,9 @@
+{
+  "games": 200,
+  "win_rate_a": 0.425,
+  "win_rate_b": 0.575,
+  "avg_score_a": -0.1117,
+  "avg_score_b": 0.1117,
+  "checkpoint_a": "init (redacted)",
+  "checkpoint_b": "continued online (redacted)"
+}

@@ -1,0 +1,3 @@
+label,steps_per_sec,notes
+Naive online\n(152 tables),225.19,naive multi-table online batch (152 tables)
+Current online\n(colocated+PPO),4342.60,median over warm updates 1841..36861
