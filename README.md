@@ -164,4 +164,4 @@ DanKS-Train/
 
 Contributions, bug reports, and optimizations are welcome! Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
-DanKS-Train is released under the [Apache 2.0 License](LICENSE). Third-party components retain their respective licenses; see [NOTICE](NOTICE).
+DanKS-Train and its released model weights are licensed under the [Apache 2.0 License](LICENSE) (commercial and research use permitted). Third-party components retain their respective licenses; see [NOTICE](NOTICE).

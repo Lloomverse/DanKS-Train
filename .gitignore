@@ -32,7 +32,10 @@ build/
 # Data and local tooling
 data/
 datasets/
-checkpoints/
+checkpoints/*
+!checkpoints/README.md
+versions/*/DanKS/checkpoints/*
+!versions/*/DanKS/checkpoints/README.md
 models/
 runs/
 eval_runs/

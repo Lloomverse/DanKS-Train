@@ -164,4 +164,4 @@ DanKS-Train/
 
 欢迎提交 Bug 报告、优化建议与 Pull Request！详情请参考 [CONTRIBUTING.md](.github/CONTRIBUTING.md)。
 
-本项目采用 [Apache 2.0 许可证](LICENSE)。第三方依赖遵循其自身许可，详见 [NOTICE](NOTICE)。
+DanKS-Train 代码及其发布的模型权重均采用 [Apache 2.0 许可证](LICENSE)（允许商业与研究用途）。第三方依赖遵循其自身许可，详见 [NOTICE](NOTICE)。
