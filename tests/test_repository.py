@@ -55,7 +55,7 @@ def test_repository_uses_compact_developer_layout() -> None:
             "v3_ppo_smoke.py",
         )
     )
-    assert not any((ROOT / name).exists() for name in ("generations", "danks_repo", "tools", "docs"))
+    assert not any((ROOT / name).exists() for name in ("generations", "danks_repo", "tools"))
 
 
 def test_readme_visual_assets_are_versioned() -> None:
@@ -66,39 +66,30 @@ def test_readme_visual_assets_are_versioned() -> None:
     assert "README.zh-CN.md" in readmes["README.md"]
     assert 'href="README.md"' in readmes["README.zh-CN.md"]
     for relative in (
-        "assets/kingsoft-logo.png",
-        "assets/danks-online-demo.png",
-        "assets/danks-online-demo.gif",
-        "assets/danks-promotional-hero-v2.png",
-        "assets/danks-social-preview.png",
+        "docs/technical-report.md",
+        "docs/technical-report.zh-CN.md",
         "assets/danks-overall-architecture.png",
         "assets/structure-aware-delayed-outcomes.png",
+        "assets/online-training-speedup.png",
+        "assets/online-training-throughput.png",
+        "assets/online-training-convergence.png",
+        "assets/online-training-strength.png",
     ):
         path = ROOT / relative
         assert path.is_file()
         assert path.stat().st_size > 0
-        assert all(relative in readme for readme in readmes.values())
-
-    for readme in readmes.values():
-        assert "Kingsoft AI Product Center" in readme
-        assert 'href="https://www.kingsoft.com/"' in readme
-        assert 'src="assets/kingsoft-logo.png" alt=' in readme
-        assert 'width="720"' in readme
-        assert 'href="https://calixlin.com/CardKS/"' in readme
-
-    assert "Online demo" in readmes["README.md"]
-    assert "在线体验" in readmes["README.zh-CN.md"]
 
     assert (
-        '<h1 align="center">DanKS: State-of-the-art GuanDan AI</h1>'
+        '<h1 align="center">DanKS-Train: Open-Source GuanDan AI & Online Self-Play Framework</h1>'
         in readmes["README.md"]
     )
-    assert "<strong>Three complete generations of code</strong>" in readmes["README.md"]
     assert (
-        '<h1 align="center">DanKS：SOTA 级掼蛋智能体</h1>'
+        '<h1 align="center">DanKS-Train：开源掼蛋 AI 与在线自博弈训练框架</h1>'
         in readmes["README.zh-CN.md"]
     )
-    assert "<strong>完整开放三代技术路线</strong>" in readmes["README.zh-CN.md"]
+    for readme in readmes.values():
+        assert "Lloomverse/DanKS-Train" in readme
+        assert "technical-report" in readme
 
 
 def test_each_version_has_installable_distribution_metadata() -> None:
@@ -201,6 +192,8 @@ def test_each_version_imports_in_isolation() -> None:
             [
                 sys.executable,
                 "-c",
+                "import sys, os; sys.meta_path = [f for f in sys.meta_path if 'editable' not in repr(f)]; "
+                "sys.path.insert(0, str(os.environ['PYTHONPATH'])); "
                 "import DanKS; print(DanKS.__file__, DanKS.GENERATION)",
             ],
             check=True,
@@ -222,6 +215,8 @@ def test_public_uniform_action_seed_contract_is_stable() -> None:
             [
                 sys.executable,
                 "-c",
+                "import sys, os; sys.meta_path = [f for f in sys.meta_path if 'editable' not in repr(f)]; "
+                "sys.path.insert(0, str(os.environ['PYTHONPATH'])); "
                 "from DanKS.training.schema import derive_uniform_action_seed; "
                 "print(derive_uniform_action_seed(2026, 123456, 0))",
             ],
