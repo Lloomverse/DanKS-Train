@@ -63,8 +63,9 @@ def test_readme_visual_assets_are_versioned() -> None:
         "README.md": (ROOT / "README.md").read_text(encoding="utf-8"),
         "README.zh-CN.md": (ROOT / "README.zh-CN.md").read_text(encoding="utf-8"),
     }
-    assert "README.zh-CN.md" in readmes["README.md"]
-    assert 'href="README.md"' in readmes["README.zh-CN.md"]
+    assert "README.en.md" in readmes["README.md"]
+    assert 'href="README.md"' in (ROOT / "README.en.md").read_text(encoding="utf-8")
+    assert 'href="README.en.md"' in readmes["README.zh-CN.md"]
     for relative in (
         "docs/technical-report.md",
         "docs/technical-report.zh-CN.md",
@@ -80,12 +81,16 @@ def test_readme_visual_assets_are_versioned() -> None:
         assert path.stat().st_size > 0
 
     assert (
-        '<h1 align="center">DanKS-Train: Open-Source GuanDan AI & Online Self-Play Framework</h1>'
+        '<h1 align="center">DanKS-Train：开源掼蛋 AI 与在线自博弈训练框架</h1>'
         in readmes["README.md"]
     )
     assert (
         '<h1 align="center">DanKS-Train：开源掼蛋 AI 与在线自博弈训练框架</h1>'
         in readmes["README.zh-CN.md"]
+    )
+    assert (
+        '<h1 align="center">DanKS-Train: Open-Source GuanDan AI & Online Self-Play Framework</h1>'
+        in (ROOT / "README.en.md").read_text(encoding="utf-8")
     )
     for readme in readmes.values():
         assert "Lloomverse/DanKS-Train" in readme
