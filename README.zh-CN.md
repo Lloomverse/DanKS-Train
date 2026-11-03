@@ -33,7 +33,7 @@
 - **完整官方规则引擎**（`guandan/`）：纯 Python 实现 108 张牌、组队协作、进贡/还贡、抗贡、级牌升级与合法动作生成。
 - **组合动作结构化检索**（`versions/v3/DanKS/retrieval`）：针对掼蛋庞大的动作空间，通过手牌分解与结构评估筛选高质量 Top-10 战术动作子集。
 - **高吞吐在线自博弈 PPO**（`versions/v3/DanKS/training`）：内存内牌桌模拟、批量 GPU 推理与 PPO 策略更新同机共置，**无需落盘中间数据集**。
-- **开箱即用预训练权重**：直接通过 GitHub Releases 获取已验证的模型权重（`v0.1.0`）。
+- **开箱即用预训练权重**：直接通过 GitHub Releases 获取已验证的模型权重（`v0.1.1`）。
 
 ---
 
@@ -42,7 +42,8 @@
 | 指标 | 测量值 | 说明 |
 | --- | ---: | --- |
 | **在线训练吞吐** | **~4,340** env step / s | 单卡 GPU 热身中位数（相比单进程朴素对局 225 step/s 提升约 19 倍） |
-| **实战对局胜率** | **57.5%** 胜率 | 200 局对抗自博弈相比初始基线胜率（57.5% vs 42.5%，平均局分 +0.1117） |
+| **实战对局胜率** | **57.5%** 胜率 | 200 局对抗自博弈相比初始基线胜率（57.5% vs 42.5%，平均每局 +0.335 级） |
+| **v0.1.1 对 v0.1.0** | **55.0%** 胜率 | 200 局换边自博弈，种子 2026（平均每局 +0.32 级）。种子 2027：56.5%，+0.40 级 |
 | **规则引擎速度** | **>10,000** steps / s | 纯 Python 规则计算，包含完整升级赛制支持 |
 
 > 详细训练动态（PPO loss、策略熵收敛、价值解释方差曲线）及测速方法，请参阅[技术报告](docs/technical-report.zh-CN.md)。
@@ -73,13 +74,15 @@ python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/
 
 ### 2. 下载预训练权重
 
-获取官方 `v0.1.0` 权重文件：
+获取官方 `v0.1.1` 权重文件：
 
 ```bash
 mkdir -p checkpoints
 curl -L -o checkpoints/top10_selector_v3_online.pt \
-  https://github.com/Lloomverse/DanKS-Train/releases/download/v0.1.0/top10_selector_v3_online.pt
+  https://github.com/Lloomverse/DanKS-Train/releases/download/v0.1.1/top10_selector_v3_online.pt
 ```
+
+`v0.1.0` 仍留在上一个 Release，供上面的对比使用。
 
 运行环境自检：
 

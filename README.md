@@ -33,7 +33,7 @@
 - **Complete official rules engine** (`guandan/`): 108 cards, partner collaboration, tribute/return, promotion matches, and legal action generation in pure Python.
 - **Combinatorial candidate retrieval** (`versions/v3/DanKS/retrieval`): Solves GuanDan's massive action space through structured decomposition into a compact set of Top-10 strategic actions.
 - **High-throughput online PPO** (`versions/v3/DanKS/training`): In-memory colocated multi-table simulation, batched GPU inference, and PPO updates with **no disk I/O shuttling**.
-- **Pretrained weights**: Download verified model checkpoints (`v0.1.0`) directly via GitHub Releases.
+- **Pretrained weights**: Download verified model checkpoints (`v0.1.1`) directly via GitHub Releases.
 
 ---
 
@@ -42,7 +42,8 @@
 | Metric | Measurement | Notes |
 | --- | ---: | --- |
 | **Online Training Throughput** | **~4,340** env step / s | Warm median on a single GPU (~19× vs 225 step/s naive table baseline) |
-| **Playing Strength** | **57.5%** win rate | 200-game head-to-head self-play vs init checkpoint (+0.1117 avg score) |
+| **Playing Strength** | **57.5%** win rate | 200-game head-to-head self-play vs init checkpoint (+0.335 levels per game) |
+| **v0.1.1 vs v0.1.0** | **55.0%** win rate | 200-game seat-swapping self-play, seed 2026 (+0.32 levels per game). Seed 2027: 56.5%, +0.40 |
 | **Rules Engine Speed** | **>10,000** steps / s | Standalone Python implementation with full promotion mechanics |
 
 > For training curves (PPO loss, policy entropy, explained variance) and measurement methodology, see the [Technical Report](docs/technical-report.md).
@@ -73,13 +74,15 @@ python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/
 
 ### 2. Download Pretrained Weights
 
-Download the official `v0.1.0` weights:
+Download the official `v0.1.1` weights:
 
 ```bash
 mkdir -p checkpoints
 curl -L -o checkpoints/top10_selector_v3_online.pt \
-  https://github.com/Lloomverse/DanKS-Train/releases/download/v0.1.0/top10_selector_v3_online.pt
+  https://github.com/Lloomverse/DanKS-Train/releases/download/v0.1.1/top10_selector_v3_online.pt
 ```
+
+`v0.1.0` stays at the previous release tag for the comparison above.
 
 Verify your environment with quick sanity checks:
 

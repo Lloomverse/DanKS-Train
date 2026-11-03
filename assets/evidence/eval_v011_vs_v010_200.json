@@ -1,0 +1,22 @@
+{
+  "games": 200,
+  "device": "cuda:0",
+  "checkpoint_a": "v0.1.0",
+  "checkpoint_b": "v0.1.1",
+  "runs": [
+    {
+      "seed": 2026,
+      "win_rate_a": 0.45,
+      "win_rate_b": 0.55,
+      "avg_levels_a": -0.32,
+      "avg_levels_b": 0.32
+    },
+    {
+      "seed": 2027,
+      "win_rate_a": 0.435,
+      "win_rate_b": 0.565,
+      "avg_levels_a": -0.40,
+      "avg_levels_b": 0.40
+    }
+  ]
+}

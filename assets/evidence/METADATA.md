@@ -18,7 +18,17 @@ File: `eval_init_vs_latest_200.json` (checkpoint paths redacted)
 - Result: continued online weight win rate **57.5%** vs init **42.5%**
 - Chart: `assets/online-training-strength.png`
 
+## v0.1.1 vs v0.1.0 (200-game self-play)
+
+File: `eval_v011_vs_v010_200.json`
+
+- Opponent: released `v0.1.0`
+- Seed 2026: `v0.1.1` win rate **55.0%**, **+0.32** levels per game
+- Seed 2027: `v0.1.1` win rate **56.5%**, **+0.40** levels per game
+
 ## Public weight naming
+
+Current release tag: `v0.1.1`. The asset name stays date-free. `v0.1.0` remains published.
 
 Release assets use a date-free name, for example:
 

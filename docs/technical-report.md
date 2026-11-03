@@ -116,12 +116,21 @@ To eliminate positional bias, the two models swap team seats (0/2 vs 1/3) after 
   />
 </p>
 
-| Checkpoint | Win Rate | Average Score / Game |
+| Checkpoint | Win Rate | Average levels / game |
 | --- | ---: | ---: |
-| Initial baseline weight | 42.5% | -0.1117 |
-| **Continued online weight (`v0.1.0`)** | **57.5%** | **+0.1117** |
+| Initial baseline weight | 42.5% | -0.335 |
+| **Continued online weight (`v0.1.0`)** | **57.5%** | **+0.335** |
 
 *Evaluation executed using `python -m DanKS.training.eval_vs_ckpt` with seed 2026.*
+
+`v0.1.1` was then played against the released `v0.1.0` weight with the same 200-game seat swap. The chart above stays the init comparison.
+
+| Checkpoint | Win Rate | Average levels / game |
+| --- | ---: | ---: |
+| `v0.1.0` | 45.0% | -0.32 |
+| **`v0.1.1` (seed 2026)** | **55.0%** | **+0.32** |
+
+A second run with seed 2027 scored 56.5% for `v0.1.1` and +0.40 levels per game (`v0.1.0`: 43.5%, -0.40). Raw results: `assets/evidence/eval_v011_vs_v010_200.json`.
 
 ---
 
@@ -131,6 +140,7 @@ Raw metrics and reproduction scripts are included in the repository:
 
 - Metric logs: `assets/evidence/online_training_metrics.csv`
 - Evaluation results: `assets/evidence/eval_init_vs_latest_200.json`
+- `v0.1.1` vs `v0.1.0`: `assets/evidence/eval_v011_vs_v010_200.json`
 - Speed comparison data: `assets/evidence/speed_comparison.csv`
 
 To reproduce the charts:
