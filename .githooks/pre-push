@@ -1,0 +1,32 @@
+#!/bin/sh
+set -eu
+
+zero=0000000000000000000000000000000000000000
+name=$(printf '%s%s' 'yu' 'zhenbo')
+mail=$(printf '%s%s' 'duole' '.com')
+agent=$(printf '%s%s' 'cursor' 'agent')
+
+while read -r local_ref local_sha remote_ref remote_sha
+do
+  if [ "$local_sha" = "$zero" ]; then
+    continue
+  fi
+  if [ "$remote_sha" = "$zero" ]; then
+    range=$local_sha
+  else
+    range=${remote_sha}..${local_sha}
+  fi
+  if [ -z "$(git rev-list "$range")" ]; then
+    continue
+  fi
+  if git log --format='%an%n%ae%n%cn%n%ce%n%B' "$range" | grep -F -i -e "$name" -e "$mail" -e "$agent" >/dev/null; then
+    echo "refusing push of $local_ref: commit author or message contains a blocked identity" >&2
+    exit 1
+  fi
+  if git grep -a -i -F -e "$name" -e "$mail" -e "$agent" $(git rev-list "$range") >/dev/null; then
+    echo "refusing push of $local_ref: pushed file content contains a blocked identity" >&2
+    exit 1
+  fi
+done
+
+exit 0
